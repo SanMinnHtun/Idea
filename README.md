@@ -1,1 +1,1 @@
-# Idea
+# Ideas for Thesis
