@@ -1,0 +1,61 @@
+MediMind AI v2 — Full Stack Rebuild
+Stack: React + Flask + Python ML Model
+Architecture Overview
+
+┌─────────────────────────────────────────────────────────┐
+│  FRONTEND          BACKEND            AI MODEL           │
+│  React (Vite)      Flask (Python)     scikit-learn       │
+│  :5173        ──►  :5000         ──►  symptom_model.pkl  │
+└─────────────────────────────────────────────────────────┘
+Components
+Frontend — React + Vite (port 5173)
+Dashboard.jsx — Health score + activity feed
+SymptomChecker.jsx — Symptom form → API call → results
+HealthTracker.jsx — Vitals form + Chart.js charts
+Chatbot.jsx — Chat UI with Flask chatbot endpoint
+Backend — Flask (port 5000)
+POST /api/symptoms/analyze — ML symptom prediction
+POST /api/chat — Chatbot intent response
+GET/POST /api/vitals — SQLite vitals storage
+GET /api/model/info — Model metadata
+Python AI Model — scikit-learn
+Algorithm: TF-IDF Vectorizer + Random Forest Classifier
+Training data: 600+ symptom-condition records (18 conditions)
+Output: Top conditions + probabilities + urgency + recommendations
+Saved as: symptom_model.pkl (joblib)
+File Structure
+
+healthcare-ai-v2/
+├── backend/
+│   ├── app.py                  Flask API server
+│   ├── requirements.txt        Python deps
+│   ├── database.py             SQLite vitals DB
+│   └── model/
+│       ├── train.py            Train + save model
+│       ├── predictor.py        Load model + predict
+│       ├── training_data.py    Symptom dataset
+│       └── symptom_model.pkl   Trained model (generated)
+└── frontend/
+    ├── src/
+    │   ├── App.jsx
+    │   ├── main.jsx
+    │   ├── index.css
+    │   ├── api/client.js       Axios API client
+    │   └── components/
+    │       ├── Navbar.jsx
+    │       ├── Dashboard.jsx
+    │       ├── SymptomChecker.jsx
+    │       ├── HealthTracker.jsx
+    │       └── Chatbot.jsx
+    ├── index.html
+    └── package.json
+Tasks
+ Create implementation plan
+ Bootstrap React + Vite frontend
+ Create Flask backend + CORS
+ Build training dataset (600+ records)
+ Train and save sklearn model
+ Build Flask API endpoints
+ Build React components
+ Connect frontend to backend
+ Test full stack
